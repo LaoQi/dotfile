@@ -9,13 +9,10 @@ call vundle#begin('~/.vim/bundle')
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'daviddavis/vim-colorpack'
-Plugin 'daylerees/colour-schemes', { 'rtp': 'vim/' }
-Plugin 'reedes/vim-colors-pencil'
-
 Plugin 'fs111/pydoc.vim'
 Plugin 'pangloss/vim-javascript'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'sheerun/vim-polyglot'
+" Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()            " required
 filetype plugin indent on    " required

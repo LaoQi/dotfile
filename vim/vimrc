@@ -1,0 +1,66 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin('~/.vim/bundle')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'daviddavis/vim-colorpack'
+Plugin 'daylerees/colour-schemes', { 'rtp': 'vim/' }
+Plugin 'reedes/vim-colors-pencil'
+
+Plugin 'fs111/pydoc.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'Valloric/YouCompleteMe'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+if has("syntax")
+  syntax on
+endif
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+"显示行号
+set nu
+"折叠代码
+" set foldmethod=syntax
+" set foldlevel=99
+"高亮度反白
+"set hlsearch
+"终端支持256色
+set t_Co=256
+"随时用倒退键删除
+"set backspace=2
+"显示不同的底色色调
+"set bg=dark
+"自动折行
+set wrap
+set encoding=utf8
+set fileencoding=utf8
+set fileencodings=utf8,gbk,gb2321
+
+"status line 
+"-----------------------------------
+set showcmd
+set showmode
+set ruler
+
+set laststatus=2
+set statusline=%t\ [%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y
+set statusline+=%=
+set statusline+=\ %c,%l/%L\ \|\ %n\ \|\ %P
+"-----------------------------------
+
+if has('gui_running')
+    set guioptions-=T  " no toolbar
+    colorscheme codeschool
+else
+    colorscheme pablo
+endif

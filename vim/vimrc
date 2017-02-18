@@ -27,8 +27,8 @@ Plugin 'Shougo/neocomplete.vim'
 	" Define dictionary.
 	let g:neocomplete#sources#dictionary#dictionaries = {
 				\ 'default' : '',
-				\ 'vimshell' : $HOME.'/.vimshell_hist',
-				\ 'scheme' : $HOME.'/.gosh_completions'
+				\ 'vimshell' : $HOME.'/.vim/tmp/vimshell_hist',
+				\ 'scheme' : $HOME.'/.vim/tmp/gosh_completions'
 				\ }
 
 	" Define keyword.
@@ -52,11 +52,15 @@ Plugin 'Shougo/neocomplete.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
+" ------------------------------------------------
+" ------------------------------------------------
+" ------------------------------------------------
 
 if has("syntax")
   syntax on
 endif
 
+set viminfo='10,\"100,:20,%,n~/.vim/tmp/viminfo
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4

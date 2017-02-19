@@ -24,6 +24,8 @@ Plugin 'Shougo/neocomplete.vim'
 	" Set minimum syntax keyword length.
 	let g:neocomplete#sources#syntax#min_keyword_length = 3
 
+	let g:neocomplete#data_diretory = $HOME.'/.vim/tmp/neocomplete'
+
 	" Define dictionary.
 	let g:neocomplete#sources#dictionary#dictionaries = {
 				\ 'default' : '',

@@ -9,8 +9,11 @@ call vundle#begin('~/.vim/bundle')
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'fs111/pydoc.vim'
-Plugin 'pangloss/vim-javascript'
+Plugin 'scrooloose/nerdtree'
+nmap <silent><F3> :NERDTreeToggle<CR>
+Plugin 'kien/ctrlp.vim'
+"Plugin 'fs111/pydoc.vim'
+"Plugin 'pangloss/vim-javascript'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'Shougo/neocomplete.vim'
 	"Note: This option must be set in .vimrc(_vimrc).  NOT IN
@@ -66,20 +69,13 @@ set viminfo='10,\"100,:20,%,n~/.vim/tmp/viminfo
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-"显示行号
 set nu
-"折叠代码
 " set foldmethod=syntax
 " set foldlevel=99
-"高亮度反白
 "set hlsearch
-"终端支持256色
 set t_Co=256
-"随时用倒退键删除
 "set backspace=2
-"显示不同的底色色调
 "set bg=dark
-"自动折行
 set wrap
 set encoding=utf8
 set fileencoding=utf8

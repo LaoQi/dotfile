@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+# Set zsh path $ZDOTDIR
+ZDOTDIR=~/.config/zsh
+export ZDOTDIR

@@ -1,0 +1,2 @@
+# change to grml
+copy zshenv to /etc/zsh (change ZDIR)

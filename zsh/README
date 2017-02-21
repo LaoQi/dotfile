@@ -1,2 +1,4 @@
 # change to grml
+# source grml.zshrc
+ln -s zshrc ~/.zshrc
 copy zshenv to /etc/zsh (change ZDIR)

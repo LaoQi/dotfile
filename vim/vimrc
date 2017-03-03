@@ -12,6 +12,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 nmap <silent><F3> :NERDTreeToggle<CR>
 Plugin 'kien/ctrlp.vim'
+Plugin 'rust-lang/rust.vim'
 "Plugin 'fs111/pydoc.vim'
 "Plugin 'pangloss/vim-javascript'
 Plugin 'sheerun/vim-polyglot'

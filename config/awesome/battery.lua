@@ -24,18 +24,22 @@ end
 function battery.getinfo()
     local handle = io.popen("acpi","r")
     local info = handle:read("*a")
+	local out = " AC "
     handle:close()
 	if (info ~= "") then
-		info = string.sub(info,12)
-		if (string.find(info,"Unknown")) then
-			info = string.sub(info,9)
-			info = " On-Line" .. info
+		local rate = string.match(info, "[1-9]+%d*%%")
+		local charged = string.match(info, "Charging")
+		local remaining = string.match(info, "(%d%d:%d%d):%d%d")
+		if charged then
+			out = string.format(" %s %s until charged ", rate, remaining)
+		elseif not remaining then
+			out = string.format(" On-Line %s ", rate)
+		else
+			out = string.format(" Remaining %s %s ", rate, remaining)
 		end
-	else
-		info = " AC "
 	end
 		
-	return info
+	return out
 end
 
 

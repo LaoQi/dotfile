@@ -22,10 +22,11 @@ function volume.new(timeout)
 end
 
 function volume.getinfo()
-    -- local handle = io.popen('amixer get Master | grep \"Front Left:\" | cut -d\\[ -f2 | cut -d\\] -f1',"r")
-    local handle = io.popen('amixer get Master | grep \"Front Left:\" | cut -d\' \' -f7,8 ',"r")
+    --local handle = io.popen('amixer get Master | grep \"Front Left:\" | cut -d\' \' -f7,8 ',"r")
+    local handle = io.popen('amixer get Master',"r")
     local info = handle:read("*a")
     handle:close()
+	vol = string.match("%[(%d+%%)%])",  info)
 	return " Vol: " .. info
 end
 

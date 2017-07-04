@@ -16,6 +16,7 @@ local volume = require("volume")
 local thermal = require("thermal")
 local screensave = require("screensave")
 local network = require("network")
+-- local itest = require("imagetest")
 
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Enable VIM help for hotkeys widget when client with matching name is opened:
@@ -134,9 +135,9 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+mytextclock = wibox.widget.textclock(" %m/%d %a, %H:%M:%S ", 1)
 mybattery = battery()
-myvolume = volume()
+-- myvolume = volume()
 mythermal = thermal()
 myscreensave = screensave()
 mynetwork = network()

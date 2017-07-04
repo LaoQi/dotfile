@@ -5,7 +5,7 @@ local imagetest = { mt = {} }
 
 function imagetest.new()
 	local w = imagebox()
-	w:set_image("~/.config/awesome/themes/zenburn/layouts/tile.png")
+	w:set_image("/home/laoqi/.config/awesome/themes/zenburn/layouts/tile.png")
 
 	return w
 end

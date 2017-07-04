@@ -22,11 +22,16 @@ function thermal.new(timeout)
 end
 
 function thermal.getinfo()
-    local handle = io.popen('sensors | grep "temp1" | cut -d+ -f2 | head -n 1',"r")
-    local info = handle:read("*a")
-    handle:close()
-	info = string.sub(info,1,7)
-	return "  " .. info
+    -- local handle = io.popen('sensors | grep "temp1" | cut -d+ -f2 | head -n 1',"r")
+    -- local info = handle:read("*a")
+    -- handle:close()
+	local f = io.open('/proc/acpi/ibm/thermal')
+	if not f then return nil end
+	local res = f:read("*a")
+	f:close()
+	if not res then return nil end
+	local t = string.match(res, "%d+")
+	return " " .. t .. "℃ "
 end
 
 

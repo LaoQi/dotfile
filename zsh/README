@@ -1,4 +1,9 @@
 # change to grml
 # source grml.zshrc
+### use grml zsh config 
+```
+#Get lastest version
+wget -O .zshrc https://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
+```
 ln -s zshrc ~/.zshrc
 copy zshenv to /etc/zsh (change ZDIR)

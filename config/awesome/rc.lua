@@ -16,7 +16,6 @@ local volume = require("volume")
 local thermal = require("thermal")
 local screensave = require("screensave")
 local network = require("network")
--- local itest = require("imagetest")
 
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Enable VIM help for hotkeys widget when client with matching name is opened:
@@ -247,8 +246,8 @@ awful.screen.connect_for_each_screen(function(s)
 			mythermal,
 			mybattery,
             mytextclock,
-			mynetwork,
 			myscreensave,
+			mynetwork,
             s.mylayoutbox,
         },
     }

@@ -3,39 +3,46 @@ local imagebox = require("wibox.widget.imagebox")
 local io = io
 local os = os
 local button = require("awful.button")
--- local naughty = require("naughty")
+local gears = require("gears")
+local naughty = require("naughty")
 
 local screensave = { mt = {} }
+local images_dir = gears.filesystem.get_configuration_dir() .. '/images/'
 
 function screensave:update(w)
-	local handle = io.popen("xset -q | grep \"timeout\" | cut -dc -f1 | grep -o \"[0-9]\\+\"","r")
+	local handle = io.popen("xset -q","r")
 	local info = handle:read("*a")
-	local image = "~/.config/awesome/themes/zenburn/bulb-red.png"
 	handle:close()
-	-- naughty.notify({preset = naughty.config.presets.critical,title = "test screensave",text = info})
-	if (tonumber(info) > 0 ) then
-		image = "~/.config/awesome/themes/zenburn/bulb-grey.png"
+	local timeout = string.match(info, "timeout%:%s+(%d+)")
+	local image = images_dir .. "bulb-red.png"
+	if (tonumber(timeout) > 0 ) then
+		image = images_dir .. "bulb-grey.png"
 	end
 	w:set_image(image)
 end
 
 function screensave:toggle(w)
-	local handle = io.popen("xset -q | grep \"timeout\" | cut -dc -f1 | grep -o \"[0-9]\\+\"","r")
+	local handle = io.popen("xset -q","r")
 	local info = handle:read("*a")
-	local image = "~/.config/awesome/themes/zenburn/bulb-grey.png"
 	handle:close()
+	local timeout = string.match(info, "timeout%:%s+(%d+)")
+	naughty.notify({title = "test screensave",text = timeout})
 	-- naughty.notify({preset = naughty.config.presets.critical,title = "test screensave",text = info})
-	if (tonumber(info) > 0 ) then
-		image = "~/.config/awesome/themes/zenburn/bulb-red.png"
+	local image = images_dir .. "bulb-grey.png"
+	if (tonumber(timeout) > 0 ) then
+		image = images_dir .. "bulb-red.png"
 		os.execute("xset s off;xset -dpms")
 	else
-		os.execute("xset s 300;xset dpms")
+		os.execute("xset s 600;xset dpms")
 	end
 	w:set_image(image)
 end
 
 function screensave.new()
 	local w = imagebox()
+	w:buttons(gears.table.join(
+			button({}, 1, function() screensave:toggle(w) end)
+		))
 	screensave:update(w)
 	return w
 end

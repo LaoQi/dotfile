@@ -1,6 +1,7 @@
 local setmetatable = setmetatable
 local imagebox = require("wibox.widget.imagebox")
-local awful = require("awful")
+local gfs = require("gears.filesystem")
+local naughty = require("naughty")
 local io = io
 local os = os
 -- local button = require("awful.button")
@@ -10,15 +11,13 @@ local capi = { timer = timer }
 
 local network = { mt = {} }
 
+local images_dir = gfs.get_configuration_dir()..'/images/'
+
 function network:update(w)
-	-- local handle = io.popen("iwconfig wlp1s0 | grep \"Signal level\" | cut -d- -f2 | grep -o \"[0-9]\\+\"","r")
-	-- local info = handle:read("*a")
-	-- handle:close()
-	-- naughty.notify({preset = naughty.config.presets.critical,title = "test network",text = info})
 	local handle = io.popen("iwconfig", "r")
 	local info = handle:read("*a")
 	handle:close()
-	local signalstr = string.match(info, "Signal levle=-(%d+) dBm")
+	local signalstr = string.match(info, "Signal% level%=%-(%d+)% dBm")
 	local image = "wifi-0.png"
 	local signalNum = tonumber(signalstr)
 	if ( signalNum ~= nil ) then
@@ -32,14 +31,13 @@ function network:update(w)
 	else 
 		image = "wifi-none.png"
 	end
-	-- w:set_image(awful.util.getdir("images") .. '/' .. image)
-	w:set_image(awful.util.geticonpath(image, {"png"}, {"~/.config/awesome/images"}))
+	w:set_image(images_dir .. image)
 end
 
 function network.new()
 	local timeout = timeout or 5
 	local w = imagebox()
-	
+
 	local timer = capi.timer { timeout = timeout }
 	timer:connect_signal("timeout", function() network:update(w)  end)
 	timer:start()

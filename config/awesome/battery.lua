@@ -33,7 +33,8 @@ function battery.getinfo()
 		if charged then
 			out = string.format(" %s %s until charged ", rate, remaining)
 		elseif not remaining then
-			out = string.format(" %s ", rate)
+			out = " Full "
+			-- out = string.format(" %s ", rate)
 		else
 			out = string.format(" Remaining %s %s ", rate, remaining)
 		end

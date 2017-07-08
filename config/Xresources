@@ -16,7 +16,7 @@ xterm*cjkWidth:false
 
 !color 
 xterm*background:black
-xterm*foreground:green
+xterm*foreground:white
 xterm*color0: #000000
 xterm*color1: #CC0000
 xterm*color2: #4E9A06

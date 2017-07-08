@@ -136,7 +136,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock(" %m/%d %a, %H:%M:%S ", 1)
 mybattery = battery()
--- myvolume = volume()
+myvolume = volume()
 mythermal = thermal()
 myscreensave = screensave()
 mynetwork = network()
@@ -245,6 +245,7 @@ awful.screen.connect_for_each_screen(function(s)
             systray,
 			mythermal,
 			mybattery,
+			myvolume,
             mytextclock,
 			myscreensave,
 			mynetwork,
@@ -264,6 +265,15 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
+	-- my hotkey
+	awful.key({}, "XF86AudioMute", volume.toggle,  
+			  {description="Mute", group="awesome"}),
+	awful.key({}, "XF86AudioLowerVolume", volume.lower,  
+			  {description="Lower Volume", group="awesome"}),
+	awful.key({}, "XF86AudioRaiseVolume", volume.raise,  
+			  {description="Raise Volume", group="awesome"}),
+	-- my hotkey end 
+	
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,

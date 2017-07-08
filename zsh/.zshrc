@@ -7,7 +7,7 @@ export EDITOR=vim
 setopt autocd
 
 #补全 ssh scp sftp 等
- zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
  
 ################# alias ##############################
 alias v='vim'
@@ -22,6 +22,7 @@ alias gf='git fetch'
 alias gd='git diff'
 alias gm='git commit -m'
 alias gclone='git clone'
+alias vga='xrandr --output VGA-0 --right-of LVDS --mode'
 ################# alias END  ###########################
 #
 ################# color ################################
@@ -48,9 +49,11 @@ zstyle ':vcs_info:*' enable git svn
 # zstyle ':vcs_info:git*' formats "%{$fg[grey]%}%s %{$reset_color%}%r/%S%{$fg[grey]%} %{$fg[blue]%}%b%{$reset_color%}%m%u%c%{$reset_color%} "
 zstyle ':vcs_info:git*' actionformats "%s  %r/%S %b %m%u%c "
 
-FAILED_OUT='*_·'
+#FAILED_OUT='*_·'
+FAILED_OUT=':('
 #SUCCESS_OUT='·ω·'
-SUCCESS_OUT='·‿·'
+#SUCCESS_OUT='·‿·'
+SUCCESS_OUT=':)'
 
 myprecmd() {
     vcs_info

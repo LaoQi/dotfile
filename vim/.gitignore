@@ -1,3 +1,7 @@
+*.swp
 bundle
 tmp
+colors
+plugged
+autoload
 .netrwhist

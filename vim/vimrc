@@ -9,7 +9,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 nmap <silent><F3> :NERDTreeToggle<CR>
 Plug 'kien/ctrlp.vim'
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
-Plug 'fs111/pydoc.vim', {'for': 'python'}
+"Plug 'fs111/pydoc.vim', {'for': 'python'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'sheerun/vim-polyglot'

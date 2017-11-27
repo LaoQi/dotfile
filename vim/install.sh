@@ -9,7 +9,7 @@ mkdir -p ~/.vim/bundle
 mkdir -p ~/.vim/tmp
 mkdir -p ~/.vim/colors
 
-wget -o ~/.vim/colors/molokai.vim "https://raw.githubusercontent.com/fatih/molokai/master/colors/molokai.vim"
+wget -O ~/.vim/colors/molokai.vim "https://raw.githubusercontent.com/fatih/molokai/master/colors/molokai.vim"
 #git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim --depth 1
 
 vim ~/.vim/vimrc

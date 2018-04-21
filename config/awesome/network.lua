@@ -13,11 +13,30 @@ local network = { mt = {} }
 
 local images_dir = gfs.get_configuration_dir()..'/images/'
 
+local device = nil
+
+local function getdev()
+	local handle = io.popen("iw dev | grep Interface | head -n 1")
+	local res = handle:read("*a")
+	handle:close()
+	if not res then
+		return nil
+	end
+	return string.match(res, "Interface% (%w+)")
+end
+
 function network:update(w)
-	local handle = io.popen("iwconfig", "r")
+	if not device then
+		device = getdev()
+	end
+	if not device then
+		return
+	end
+
+	local handle = io.popen("iw dev " .. device .. " link", "r")
 	local info = handle:read("*a")
 	handle:close()
-	local signalstr = string.match(info, "Signal% level%=%-(%d+)% dBm")
+	local signalstr = string.match(info, "signal:% %-(%d+)% dBm")
 	local image = "wifi-0.png"
 	local signalNum = tonumber(signalstr)
 	if ( signalNum ~= nil ) then

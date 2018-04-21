@@ -26,7 +26,7 @@ function screensave:toggle(w)
 	local info = handle:read("*a")
 	handle:close()
 	local timeout = string.match(info, "timeout%:%s+(%d+)")
-	naughty.notify({title = "test screensave",text = timeout})
+	-- naughty.notify({title = "test screensave",text = timeout})
 	-- naughty.notify({preset = naughty.config.presets.critical,title = "test screensave",text = info})
 	local image = images_dir .. "bulb-grey.png"
 	if (tonumber(timeout) > 0 ) then

@@ -22,10 +22,8 @@ function thermal.new(timeout)
 end
 
 function thermal.getinfo()
-    -- local handle = io.popen('sensors | grep "temp1" | cut -d+ -f2 | head -n 1',"r")
-    -- local info = handle:read("*a")
-    -- handle:close()
-	local f = io.open('/proc/acpi/ibm/thermal')
+    local f = io.popen('sensors -u | grep "Package id 0" -A1 | tail -n 1| cut -d: -f2',"r")
+	-- local f = io.open('/proc/acpi/ibm/thermal')
 	if not f then return nil end
 	local res = f:read("*a")
 	f:close()

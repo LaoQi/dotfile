@@ -7,7 +7,9 @@ export EDITOR=vim
 setopt autocd
 
 SearchHostsConfig() {
-	grep -v "HostName" ~/.ssh/config | grep Host | cut -d' ' -f2
+	if [[ -f ~/.ssh/config ]] then
+		grep -v "HostName" ~/.ssh/config | grep Host | cut -d' ' -f2
+	fi
 }
 #补全 ssh scp sftp 等
 #zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'

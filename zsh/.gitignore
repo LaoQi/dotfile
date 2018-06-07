@@ -3,3 +3,4 @@
 .zcompdump
 .zcompcache
 .cache
+.zprofile

@@ -27,19 +27,22 @@ local function update()
 	-- naughty.notify({ title = "debug", text = "update", timeout = 0})
 	-- check local file
 	local name = os.date("%Y-%m-%d")
-	wallpaper = wallpaper_dir .. name .. ".jpg"
+	wallpaper = string.format("%s%s.jpg", wallpaper_dir, name)
 	if true ~= file_exists(wallpaper) then
-		awful.spawn.easy_async("curl \"" .. api_url .. "\"", function (stdout, stderr, reason, exit_code) 
+		local cmd0 = string.format("curl \"%s\"", api_url)
+		awful.spawn.easy_async(cmd0, function (stdout, stderr, reason, exit_code) 
 			if 0 ~= exit_code then
 				naughty.notify { preset = naughty.config.presets.critical, title = "Request wallpaper", text = stderr}
 			else
 				local url = string.match(stdout, "\"url\":\"(.-)\"")
 				if nil ~= url then
-					local cmd = "curl \"" .. download_url .. url .. "\" -o " .. wallpaper
-					naughty.notify { text = "Download new wallpaper " .. name}
-					awful.spawn.easy_async(cmd, function(stdout, stderr, reason, exit_code)
+					-- fix wallpaper reset
+					wallpaper = string.format("%s%s.jpg", wallpaper_dir, name)
+					local cmd1 = string.format("curl \"%s%s\" -o %s", download_url, url, wallpaper)
+					naughty.notify { text = "Download new wallpaper " .. wallpaper}
+					awful.spawn.easy_async(cmd1, function(stdout, stderr, reason, exit_code)
 						if 0 ~= exit_code then
-							naughty.notify { preset = naughty.config.presets.critical, title = "Error", text = "Download wallpaper url error: " .. stderr }
+							naughty.notify { preset = naughty.config.presets.critical, title = "Download wallpaper url error", text = stderr }
 						else
 							screen.emit_signal("property::wallpaper")
 						end
@@ -53,7 +56,9 @@ local function update()
 		-- set default
 		awful.spawn.with_line_callback("ls -a " .. wallpaper_dir, {
 			stdout = function (line)
-				wallpaper = wallpaper_dir .. line
+				if string.match(line, "%.jpg$") then
+					wallpaper = wallpaper_dir .. line
+				end
 			end,
 			output_done = function()
 				if false ~= file_exists(wallpaper) then

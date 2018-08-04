@@ -32,7 +32,8 @@ local function update()
 		local cmd0 = string.format("curl \"%s\"", api_url)
 		awful.spawn.easy_async(cmd0, function (stdout, stderr, reason, exit_code) 
 			if 0 ~= exit_code then
-				naughty.notify { preset = naughty.config.presets.critical, title = "Request wallpaper", text = stderr}
+				-- naughty.notify { preset = naughty.config.presets.critical, title = "Request wallpaper", text = stderr}
+				naughty.notify { title = "Request wallpaper", text = "failed"}
 			else
 				local url = string.match(stdout, "\"url\":\"(.-)\"")
 				if nil ~= url then

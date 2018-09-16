@@ -50,7 +50,7 @@ function notice(info)
 	local e = barlen - s
 	local bar = string.rep("|", s) .. string.rep("-", e)
 
-	local title = vol .. "% ON"
+	local title = "Volume " .. vol .. "% ON"
 	if mute then
 		title = vol .. "% OFF" 
 	end

@@ -13,6 +13,7 @@ local menubar = require("menubar")
 -- Own config
 local battery = require("battery")
 local volume = require("volume")
+local backlight = require("backlight")
 local thermal = require("thermal")
 local screensave = require("screensave")
 local network = require("network")
@@ -257,6 +258,10 @@ root.buttons(gears.table.join(
 -- {{{ Key bindings
 globalkeys = gears.table.join(
 	-- my hotkey
+	awful.key({}, "XF86MonBrightnessUp", backlight.inc,  
+			  {description="XF86MonBrightnessUp", group="awesome"}),
+	awful.key({}, "XF86MonBrightnessDown", backlight.dec,  
+			  {description="XF86MonBrightnessDown", group="awesome"}),
 	awful.key({}, "XF86AudioMute", volume.toggle,  
 			  {description="Mute", group="awesome"}),
 	awful.key({}, "XF86AudioLowerVolume", volume.lower,  

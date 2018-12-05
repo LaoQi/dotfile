@@ -14,14 +14,14 @@ local volume = { mt = {} }
 local w = textbox()
 local notifyid = nil
 
-function popen(cmd)
+local function popen(cmd)
     local handle = io.popen(cmd,"r")
     local info = handle:read("*a")
     handle:close()
 	return info
 end
 
-function notice(info)
+local function notice(info)
 	local vol = string.match(info,  "%[(%d+)%%%]")
 	local stat = string.match(info, "%[on%]")
 	local mute = stat == nil

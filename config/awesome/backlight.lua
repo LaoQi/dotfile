@@ -13,14 +13,14 @@ local steps = 5
 
 local notifyid = nil
 
-function popen(cmd)
+local function popen(cmd)
     local handle = io.popen(cmd,"r")
     local info = handle:read("*a")
     handle:close()
 	return info
 end
 
-function notice(vol)
+local function notice(vol)
 	local barlen = 40
 	local notification = nil
 	if notifyid then

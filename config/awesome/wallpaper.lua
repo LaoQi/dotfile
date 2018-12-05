@@ -33,7 +33,7 @@ local function update()
 		awful.spawn.easy_async(cmd0, function (stdout, stderr, reason, exit_code) 
 			if 0 ~= exit_code then
 				-- naughty.notify { preset = naughty.config.presets.critical, title = "Request wallpaper", text = stderr}
-				naughty.notify { title = "Request wallpaper", text = "failed"}
+				naughty.notify { title = "Request wallpaper failed", text = stderr }
 			else
 				local url = string.match(stdout, "\"url\":\"(.-)\"")
 				if nil ~= url then

@@ -10,8 +10,12 @@ nmap <silent><F3> :NERDTreeToggle<CR>
 Plug 'kien/ctrlp.vim'
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 "Plug 'fs111/pydoc.vim', {'for': 'python'}
+Plug 'godlygeek/tabular', {'for': 'markdown'}
+Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+	let g:vim_markdown_folding_disabled = 1
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'fatih/vim-go', {'for': 'go'}
+	let g:go_fmt_command = "goimports"
 Plug 'sheerun/vim-polyglot'
 Plug 'Shougo/neocomplete.vim'
 	"Note: This option must be set in .vimrc(_vimrc).  NOT IN

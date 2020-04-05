@@ -8,15 +8,20 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 nmap <silent><F3> :NERDTreeToggle<CR>
 Plug 'kien/ctrlp.vim'
-Plug 'rust-lang/rust.vim', {'for': 'rust'}
+"Plug 'rust-lang/rust.vim', {'for': 'rust'}
 "Plug 'fs111/pydoc.vim', {'for': 'python'}
 Plug 'godlygeek/tabular', {'for': 'markdown'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 	let g:vim_markdown_folding_disabled = 1
-Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+"Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'fatih/vim-go', {'for': 'go'}
 	let g:go_fmt_command = "goimports"
 Plug 'sheerun/vim-polyglot'
+Plug 'w0rp/ale', {'for': 'python'}
+	let g:ale_fix_on_save = 1
+	let g:ale_completion_enabled = 1
+	let g:ale_sign_column_always = 1
+	let g:airline#extensions#ale#enabled = 1
 Plug 'Shougo/neocomplete.vim'
 	"Note: This option must be set in .vimrc(_vimrc).  NOT IN
 	".gvimrc(_gvimrc)!
@@ -94,6 +99,11 @@ set statusline=%t\ [%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y
 set statusline+=%=
 set statusline+=\ %c,%l/%L\ \|\ %n\ \|\ %P
 "-----------------------------------
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 if has('gui_running')
     set guioptions-=T  " no toolbar
